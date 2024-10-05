@@ -1,0 +1,26 @@
+.background {
+    background-image: url('../../assets/bg.png');
+    background-repeat: repeat;
+
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+
+    z-index: -1;
+
+    animation: bgScroll 40s linear infinite;
+}
+
+@keyframes bgScroll {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
