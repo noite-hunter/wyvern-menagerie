@@ -7,12 +7,43 @@
     width: 160px;
     height: 220px;
     background-color: var(--colour-border);
+
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.monsterCard:hover {
+    transform: scale(1.1);
+}
+
+.thumbnailBackground, .thumbnailEffect, .thumbnailContainer {
+    width: 154px;
+    height: 154px;
+    
+    position: relative;
+    top: 0;
+}
+
+.thumbnailBackground {
+    background-color: var(--colour-bg);
+}
+
+.thumbnailEffect, .thumbnailContainer {
+    background-image: url('../../assets/thumbs/thumb-001_00.png');
+    background-size: cover;
+}
+
+.thumbnailEffect {
+    clip-path: inset(0);
+    transition: 0.15s;
+}
+
+.monsterCard:hover .thumbnailEffect {
+    filter: blur(10px) saturate(3);
 }
 
 .thumbnailContainer {
-    width: 154px;
-    height: 154px;
-    background-color: var(--colour-bg);
+    position: absolute;
 }
 
 .nameContainer {
@@ -29,4 +60,5 @@
 
 .monsterName {
     text-align: center;
+    user-select: none;
 }
