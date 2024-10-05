@@ -1,0 +1,32 @@
+.monsterCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 160px;
+    height: 220px;
+    background-color: var(--colour-border);
+}
+
+.thumbnailContainer {
+    width: 154px;
+    height: 154px;
+    background-color: var(--colour-bg);
+}
+
+.nameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 154px;
+    height: 60px;
+    background-color: var(--colour-card);
+
+    padding: 5px;
+}
+
+.monsterName {
+    text-align: center;
+}
