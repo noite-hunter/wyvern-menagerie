@@ -10,7 +10,8 @@ function App() {
   const monsters: (string | null)[][] = monstersJson
   const filteredMonsters: string[] = monsters.flat().filter((item): item is string => !!item)
 
-  console.log(filteredMonsters);
+  const findId = (name: string): number => monsters.findIndex((row) => row.includes(name))
+  const findSubId = (name: string): number => monsters.find((row) => row.includes(name))?.indexOf(name) ?? -1
   
   return (
     <>
@@ -21,7 +22,7 @@ function App() {
         </header>
         <div className={styles.cardSpread}>
           {filteredMonsters.map((monster, index) => (
-            <Card key={index} monster={monster}/>
+            <Card key={index} monster={monster} monsterIndex={findId(monster)} variationIndex={findSubId(monster)}/>
           ))}
         </div>
         <footer><h2>{filteredMonsters.length + ' Large Monsters'}</h2></footer>

@@ -13,7 +13,7 @@
 }
 
 .monsterCard:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .thumbnailBackground, .thumbnailEffect, .thumbnailContainer {
@@ -29,7 +29,6 @@
 }
 
 .thumbnailEffect, .thumbnailContainer {
-    background-image: url('../../assets/thumbs/thumb-001_00.png');
     background-size: cover;
 }
 
