@@ -1,17 +1,25 @@
-import styles from "./Card.module.css";
+import { useState, useEffect } from "react"
+import styles from "./Card.module.css"
 
 type CardProps = {
   monster: string,
-  monsterIndex: number,
-  variationIndex: number
+  monsterId: string
 }
 
-export function Card({ monster, monsterIndex, variationIndex }: CardProps) {
-  const thumbnailUrl: string = '/src/assets/thumbs/thumb-' +
-    (monsterIndex + 1).toString().padStart(3, '0') +
-    '_' +
-    variationIndex.toString().padStart(2, '0') +
-    '.png';  
+export function Card({ monster, monsterId }: CardProps) {
+  const [thumbnailUrl, setThumbnailUrl] = useState<string>('/src/assets/thumbs/thumb-fail.png')
+
+  useEffect(() => {
+    const loadThumbnail = async () => {
+      try {
+        const image = await import(`../../assets/thumbs/thumb-${monsterId}.png`)
+        setThumbnailUrl(image.default)
+      } catch (error) {
+        console.error('Error loading thumbnail: ', error)
+      }
+    }
+    loadThumbnail()
+  }, [monsterId])
 
   return (
     <div className={styles.monsterCard}>
