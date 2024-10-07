@@ -1,20 +1,25 @@
 import './styles/global.css'
 import styles from './styles/App.module.css'
 import toggleStyles from './styles/Toggle.module.css'
+import monstersJson from './assets/monster_names.json'
 
-import { createRef, useState } from 'react'
+import { useState } from 'react'
 
 import { Background } from './components/Background'
-import { Card } from './components/Card'
-
-import monstersJson from './assets/monster_names.json'
 import { CardSpread } from './components/CardSpread'
 import { CardGrid } from './components/CardGrid'
 
 function App() {
 
   const monsters: (string | null)[][] = monstersJson
-  const trimmedMonsters: (string | null)[][] = monsters.map((row) => row.slice(0, -1)).filter((row) => !!row[0])
+
+  const trimmedMonsters: (string | null)[][] =
+    monsters
+      .filter((row) => row.some(item => item !== null))
+      .map((row) => 
+        row.filter((_, index) => ![3, 6, 9].includes(index))
+      )
+
   const filteredMonsters: string[] = monsters.flat().filter((item): item is string => !!item)
 
   const findId = (name: string): string => 
@@ -27,8 +32,6 @@ function App() {
       .padStart(2, '0')
 
   const [mode, setMode] = useState<boolean>(false)
-
-  createRef()
 
   return (
     <>
@@ -59,7 +62,6 @@ function App() {
             findSubId={findSubId}
           />
         }
-        <footer><h2>{filteredMonsters.length + ' Large Monsters'}</h2></footer>
       </div>
       <Background />
     </>

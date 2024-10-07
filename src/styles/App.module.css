@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px;
 
     padding: 100px 0;
 
@@ -13,6 +12,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding-bottom: 100px;
+
+    text-align: center;
+
+    transition: 0.2s;
 }
 
 .title {
@@ -21,4 +26,14 @@
 
 .subtitle {
     font-size: 1.5rem;
+}
+
+@media (max-width: 380px) {
+    .title {
+        font-size: max(10px, 10vw);
+    }
+
+    .subtitle {
+        font-size: max(8px, 5vw);
+    }
 }

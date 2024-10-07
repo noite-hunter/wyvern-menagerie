@@ -15,11 +15,13 @@ export function CardGrid({ array2D, findId, findSubId }: CardGridProps) {
   function scaleGrid() {
     if (gridRef.current) {
       const windowWidth: number = window.innerWidth
-      const cols: number = array2D[0].length
+      const gridWidth: number = gridRef.current.offsetWidth + 40
 
-      const cardWidth: number = 160 // If the width of the Card component ever changes, edit this
+      let scale: number = 1
 
-      const scale: number = windowWidth/(cols * cardWidth)
+      if (gridWidth > windowWidth) {
+        scale = windowWidth/gridWidth
+      }
 
       gridRef.current.style.transform = `scale(${scale})`
     }
@@ -33,24 +35,35 @@ export function CardGrid({ array2D, findId, findSubId }: CardGridProps) {
   })
 
   return (
-    <div className={styles.cardGrid} ref={gridRef}>
-      {array2D.map((row, rowIndex) =>
-        row.map((monster, subIndex) => {
-          if (!monster) {
-            return <div key={`${rowIndex + 1}_${subIndex}`}></div>
-          }
+    <>
+      <div className={styles.headerRow}>
+        <div className={styles.colHeader}><h2>Base</h2></div>
+        <div className={styles.colHeader}><h2>Subspecies</h2></div>
+        <div className={styles.colHeader}><h2>Rare Species</h2></div>
+        <div className={styles.colHeader}><h2>Deviant</h2></div>
+        <div className={styles.colHeader}><h2>Variant</h2></div>
+        <div className={styles.colHeader}><h2>Rise Apex</h2></div>
+        <div className={styles.colHeader}><h2>Risen</h2></div>
+      </div>
+      <div className={styles.cardGrid} ref={gridRef}>
+        {array2D.map((row, rowIndex) =>
+          row.map((monster, subIndex) => {
+            if (!monster) {
+              return <div key={`${rowIndex + 1}_${subIndex}`}></div>
+            }
 
-          const monsterId = findId(monster) + '_' + findSubId(monster)
+            const monsterId = findId(monster) + '_' + findSubId(monster)
 
-          return (
-            <Card
-              key={monsterId}
-              monster={monster}
-              monsterId={monsterId}
-            />
-          )
-        })
-      )}
-    </div>
+            return (
+              <Card
+                key={monsterId}
+                monster={monster}
+                monsterId={monsterId}
+              />
+            )
+          })
+        )}
+      </div>
+    </>
   )
 }

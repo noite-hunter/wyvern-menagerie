@@ -1,7 +1,54 @@
+.headerRow {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    
+    display: grid;
+    gap: 20px;
+    /* Change this if new variation types are added */
+    grid-template-columns: repeat(7, 1fr);
+
+    width: min(1240px, 97%);
+    padding: min(20px, 3vw) 0;
+    font-size: clamp(8px, 1vw, 24px);
+    text-wrap: nowrap;
+
+    transition: 0.2s;
+}
+
+.colHeader {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    background-color: var(--colour-thumbnail);
+    border: 3px solid var(--colour-border);
+
+    padding: 5px;
+
+    backdrop-filter: blur(5px);
+
+    transition: 0.2s;
+}
+
 .cardGrid {
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(9, 1fr);
-
+    gap: 20px;
+    /* Change this if new variation types are added */
+    grid-template-columns: repeat(7, 1fr);
+    
     transform-origin: top;
+    
+    transition: 0.2s;
+}
+
+@media (max-width: 640px) {
+    .headerRow {
+        gap: 0px;
+    }
+
+    .colHeader {
+        transform: rotate(-45deg);
+        padding: 0;
+    }
 }

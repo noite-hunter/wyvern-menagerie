@@ -9,6 +9,7 @@ type CardSpreadProps = {
 }
 
 export function CardSpread({ array, findId, findSubId }: CardSpreadProps) {
+
   return (
     <div className={styles.cardSpread}>
       {array.map((monster) => {
